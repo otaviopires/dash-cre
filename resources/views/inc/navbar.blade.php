@@ -1,8 +1,6 @@
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">{{ config('app.name', 'Portal Corporativo - Algar Telecom') }}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+      
+	  <a class="navbar-brand" href="/">{{ config('app.name', 'Portal Corporativo - Algar Telecom') }}</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -19,9 +17,10 @@
             <a class="nav-link" href="/posts">Blog</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Pesquise aqui!" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
-        </form>
+		<ul class="nav navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link active" href="/posts/create">Criar postagem</a>
+			</li>
+		</ul>
       </div>
     </nav>
