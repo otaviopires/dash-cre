@@ -13,8 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+					<h3 class='card-text'>
+						<a  class="card-link" href="/posts/create">Criar postagem</a>
+					</h3>
+					<h3 class='card-text'>Suas postagens</h3>
                 </div>
             </div>
         </div>

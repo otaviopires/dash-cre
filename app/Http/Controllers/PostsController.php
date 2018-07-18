@@ -47,6 +47,7 @@ class PostsController extends Controller
 			'body' => 'required'
 		]);
 		$post = new Post;
+		$post->user_id = auth()->user()->id;
 		$post->title = $request->input('title');
 		$post->body = $request->input('body');
 		$post->save();
@@ -107,6 +108,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+		$post->delete();
+		return redirect('/posts')->with('success', 'Postagem excluída!');
+
+		
     }
 }
