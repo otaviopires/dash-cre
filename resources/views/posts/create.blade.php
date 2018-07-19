@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             {{Form::file('cover_image')}}
-        </div>
+        </div>		
         {{Form::submit('Enviar', ['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
 @endsection

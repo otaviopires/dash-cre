@@ -6,9 +6,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+	
     /**
      * Display a listing of the resource.
      *
@@ -44,12 +55,32 @@ class PostsController extends Controller
     {
         $this->validate($request, [
 			'title' => 'required',
-			'body' => 'required'
+			'body' => 'required',
+			'cover_image' => 'image|nullable|max:1999'
 		]);
+		
+		//Handle file upload
+		if($request->hasFile('cover_image')){
+			//Get the file name with the extenion
+			$filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+			//Get just file name
+			$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+			//Get just extension
+			$extension = $request->file('cover_image')->getClientOriginalExtension();
+			//Filename to store
+			$fileNameToStore = $filename.'_'.time().'.'.$extension;
+			//Upload image
+			$path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+		} else {
+			$fileNameToStore = 'noimage.jpg';
+		}
+		
+		//Create post
 		$post = new Post;
 		$post->user_id = auth()->user()->id;
 		$post->title = $request->input('title');
 		$post->body = $request->input('body');
+		$post->cover_image = $fileNameToStore;
 		$post->save();
 		
 		return redirect('/posts')->with('success', 'Postagem criada!');
@@ -76,6 +107,11 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+		
+		if(auth()->user()->id != $post->user_id){
+			return redirect('/posts')->with('error', 'Página não autorizada');
+		}
+		
         return view('posts.edit')->with('post', $post);
     }
 
@@ -92,9 +128,29 @@ class PostsController extends Controller
 			'title' => 'required',
 			'body' => 'required'
 		]);
+		
+		//Handle file upload
+		if($request->hasFile('cover_image')){
+			//Get the file name with the extenion
+			$filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+			//Get just file name
+			$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+			//Get just extension
+			$extension = $request->file('cover_image')->getClientOriginalExtension();
+			//Filename to store
+			$filenameToStore = $filename.'_'.time().'.'.$extension;
+			//Upload image
+			$path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
+		}
+		
+		//Update post
 		$post = Post::find($id);
 		$post->title = $request->input('title');
 		$post->body = $request->input('body');
+		if($request->hasFile('cover_image')){
+			$post->cover_image = $filenameToStore;
+		}
+
 		$post->save();
 		
 		return redirect('/posts')->with('success', 'Postagem atualizada!');
@@ -109,6 +165,16 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+		
+		if(auth()->user()->id != $post->user_id){
+			return redirect('/posts')->with('error', 'Página não autorizada');
+		}
+		
+		if($post->cover_image != 'noimage.jpg'){
+			//Delete image
+			Storage::delete('public/cover_images/'.$post->cover_image);
+		}
+		
 		$post->delete();
 		return redirect('/posts')->with('success', 'Postagem excluída!');
 

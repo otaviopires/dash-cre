@@ -25,7 +25,7 @@ class PagesController extends Controller
 	public function services(){
 		$data = array(
 			'title' => 'Nossos setores',
-			'services' => ['Service Desk Corporativo', 'NOC', 'Service Desk TIC', 'SOC', 'Premium'] 
+			'services' => ['Service Desk Corporativo', 'NOC', 'TIC', 'Premium'] 
 		);
 		return view('pages.services')->with($data);
 	}	
