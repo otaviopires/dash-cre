@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 	<div class="container">
-		<a class="navbar-brand" href="{{ url('/') }}">
+		<a class="navbar-brand" href="{{ url('/ogs') }}">
 			{{ config('app.name', 'Laravel') }}
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -10,16 +10,26 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<!-- Left Side Of Navbar -->
 			<ul class="navbar-nav mr-auto">
+			@guest
 				<li class="nav-item">
 					<a class="nav-link" href="/about">Sobre nós</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/services">Nossos setores</a>
 				</li>
+				@else
 				<li class="nav-item">
-					<a class="nav-link" href="/posts">Blog</a>
+					<a class="nav-link" href="/ogs">OGs</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/dashboard">Suas postagens</a>
+				</li>				
+				<li class="nav-item">
+					<a class="nav-link" href="/posts">Fórum</a>
+				</li>
+			@endguest
 			</ul>
+			
 			<ul class="navbar-nav mr-auto">
 
 			</ul>
@@ -28,23 +38,23 @@
 				<!-- Authentication Links -->
 				@guest
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+						<a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
 					</li>
 				@else
+					
+
+				
 					<li class="nav-item dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href='/dashboard'>Dashboard</a>
+							<a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar novo usuário') }}</a>
 							<a class="dropdown-item" href="{{ route('logout') }}"
 							   onclick="event.preventDefault();
 											 document.getElementById('logout-form').submit();">
-								{{ __('Logout') }}
+								{{ __('Sair') }}
 							</a>
 							
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -52,15 +62,8 @@
 							</form>
 						</div>
 					</li>
-												<ul class="nav navbar-nav ml-auto">
-								<li class="nav-item">
-									<a class="nav-link active" href="/posts/create">Criar postagem</a>
-								</li>
-							</ul>
 				@endguest
-			</ul>
-
-							
-			</div>
+			</ul>			
+		</div>
 	</div>
 </nav>

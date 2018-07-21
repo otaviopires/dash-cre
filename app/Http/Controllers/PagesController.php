@@ -10,7 +10,11 @@ class PagesController extends Controller
  	public function index(){
 		return 'INDEX';
 	}
- */		
+ */	
+    public function __construct(){
+        $this->middleware('guest', ['except' => ['services', 'about']]);
+    }
+	
 	public function index(){
 		$title = "Dashboard Corporativo";
 		//return view('pages.index')->with('title', $title);

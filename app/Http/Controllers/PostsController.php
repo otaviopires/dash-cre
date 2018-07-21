@@ -17,6 +17,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
+		$this->middleware('auth')->except('logout');
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 	
@@ -153,7 +154,7 @@ class PostsController extends Controller
 
 		$post->save();
 		
-		return redirect('/posts')->with('success', 'Postagem atualizada!');
+		return redirect('/dashboard')->with('success', 'Postagem atualizada!');
     }
 
     /**
@@ -167,7 +168,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 		
 		if(auth()->user()->id != $post->user_id){
-			return redirect('/posts')->with('error', 'Página não autorizada');
+			return redirect('/dashboard')->with('error', 'Página não autorizada');
 		}
 		
 		if($post->cover_image != 'noimage.jpg'){
@@ -176,7 +177,7 @@ class PostsController extends Controller
 		}
 		
 		$post->delete();
-		return redirect('/posts')->with('success', 'Postagem excluída!');
+		return redirect('/dashboard')->with('success', 'Postagem excluída!');
 
 		
     }
