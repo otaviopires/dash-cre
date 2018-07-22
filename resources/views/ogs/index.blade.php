@@ -5,15 +5,15 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th scope="col">PROTOCOLO</th>
-				<th scope="col">FILA</th>
-				<th scope="col">DT_ABERTURA</th>
-				<th scope="col">SERVICO</th>			  
-				<th scope="col">REGIONAL</th>
-				<th scope="col">LOCALIDADE</th>
-				<th scope="col">DESCRICAO</th>			  
-				<th scope="col">INTERROMPEU</th>
-				<th scope="col">QNT_CLIENTE</th>
+				<th scope="col" style="vertical-align:middle" align="left">Protocolo</th>
+				<th scope="col" style="vertical-align:middle" align="left">Fila</th>
+				<th scope="col" style="vertical-align:middle">Status</th>
+				<th scope="col" style="vertical-align:middle">Data de abertura</th>
+				<th scope="col" style="vertical-align:middle">Serviço</th>			  
+				<th scope="col" style="vertical-align:middle">Regional</th>
+				<th scope="col" style="vertical-align:middle">Localidade</th>
+				<th scope="col" style="vertical-align:middle">Interrompeu?</th>
+				<th scope="col" style="vertical-align:middle">Quantidade de clientes</th>
 			</tr>
 		</thead>
 	@foreach ($ogs as $i=>$og)
@@ -30,9 +30,16 @@
 			  <td>{{ $og['QNT_CLIENTE'] }}</td>		
 			</tr> 
 			<tr>
-				<td class="hiddenRow" style="width: 100%;" colspan="9">
+				<td class="hiddenRow" colspan="9">
 					<div id="demo{{$i}}" class="accordian-body collapse"> 
-						{{$og['OBS']}}
+						<p>
+							<strong>Descrição:</strong>
+							{{$og['DESCRICAO']}}			
+						</p>						
+						<p>
+							<strong>Observação:</strong>
+							{{$og['OBS']}}
+						</p>
 					</div> 
 				</td>
 			</tr>
