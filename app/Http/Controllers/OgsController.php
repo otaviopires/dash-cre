@@ -24,13 +24,8 @@ class OgsController extends Controller
 		$ogs = json_decode(file_get_contents($url), true);
 		//dd($ogs);
 		
-		foreach($ogs as $og) {
-			$og['PROTOCOLO'];
-			$og['FILA'];
-			// to know what's in $og
-			//echo '<pre>'; var_dump($og);
-		}
-		return view('ogs.index')->with('ogs', $ogs);
+		//return view('ogs.index')->with('ogs', $ogs);
+		return $this->store($ogs);
     }
 
     /**
@@ -49,10 +44,34 @@ class OgsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store($ogs)
+    {		
+		foreach($ogs as $o) {		
+			$protocolo = $o['PROTOCOLO'];
+			//echo $protocolo . " ". $o['PROTOCOLO'] . "<br>";
+			echo Og::where('protocolo',  $protocolo)->first()->protocolo;
+			//echo Og::string($protocolo)->first() . "<br>"; 
+			
+			if(Og::where('protocolo',  $protocolo)->first()->protocolo == $o['PROTOCOLO']){
+				continue;
+			}else{
+				$og = new Og;
+				$og->protocolo = $o['PROTOCOLO'];
+				$og->fila = $o['FILA'];
+				$og->status = $o['STATUS'];
+				$og->data_abertura = $o['DT_ABERTURA'];
+				$og->servico = $o['SERVICO'];
+				$og->regional = $o['REGIONAL'];
+				$og->localidade = $o['LOCALIDADE'];
+				$og->descricao = $o['DESCRICAO'];
+				$og->interrompeu = $o['INTERROMPEU'];
+				$og->qtd_clientes = $o['QNT_CLIENTE'];
+				$og->obs = $o['OBS'];
+				$og->save();
+			}
+		}
+	}
+	
 
     /**
      * Display the specified resource.

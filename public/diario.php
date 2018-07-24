@@ -64,3 +64,5 @@ public function tela()
         print_r($array);
         
     }
+	
+	
