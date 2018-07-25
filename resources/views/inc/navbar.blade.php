@@ -27,10 +27,10 @@
 				</li>
 				@else
 				<li class="nav-item">
-					<a class="nav-link" href="/ogs">OGs</a>
+					<a class="nav-link" href="/ogs/list">Histórico de OGs</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/dashboard">Suas postagens</a>
+					<a class="nav-link" href="/users/list">Suas postagens</a>
 				</li>				
 				<li class="nav-item">
 					<a class="nav-link" href="/posts">Fórum</a>

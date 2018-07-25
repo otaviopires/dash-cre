@@ -10,7 +10,7 @@ class OgsController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth')->except('logout');
+       $this->middleware('auth')->except('logout');
     }
     
 	/**
@@ -24,8 +24,9 @@ class OgsController extends Controller
 		$ogs = json_decode(file_get_contents($url), true);
 		//dd($ogs);
 		
-		//return view('ogs.index')->with('ogs', $ogs);
-		return $this->store($ogs);
+		$this->store($ogs);
+		return $this->showLiveJson($ogs);
+
     }
 
     /**
@@ -48,11 +49,7 @@ class OgsController extends Controller
     {		
 		foreach($ogs as $o) {		
 			$protocolo = $o['PROTOCOLO'];
-			//echo $protocolo . " ". $o['PROTOCOLO'] . "<br>";
-			echo Og::where('protocolo',  $protocolo)->first()->protocolo;
-			//echo Og::string($protocolo)->first() . "<br>"; 
-			
-			if(Og::where('protocolo',  $protocolo)->first()->protocolo == $o['PROTOCOLO']){
+			if(Og::where('protocolo',  $protocolo)->first()['protocolo'] == $o['PROTOCOLO']){
 				continue;
 			}else{
 				$og = new Og;
@@ -64,7 +61,15 @@ class OgsController extends Controller
 				$og->regional = $o['REGIONAL'];
 				$og->localidade = $o['LOCALIDADE'];
 				$og->descricao = $o['DESCRICAO'];
-				$og->interrompeu = $o['INTERROMPEU'];
+				
+				if($o['INTERROMPEU'] == "Y"){
+					$og->interrompeu = "Sim";
+				}elseif($o['INTERROMPEU'] == "N"){
+					$og->interrompeu = "Não";
+				}else{
+				$og->interrompeu = "Não informado";
+				}
+				
 				$og->qtd_clientes = $o['QNT_CLIENTE'];
 				$og->obs = $o['OBS'];
 				$og->save();
@@ -81,7 +86,18 @@ class OgsController extends Controller
      */
     public function show(Og $og)
     {
-        //
+		//
+	}    
+	
+	public function getSavedOgs()
+    {
+        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(5);
+        return view('ogs.list')->with('ogs', $ogs);
+	}
+    
+    public function showLiveJson($ogs)
+    {
+		return view('ogs.index')->with('ogs', $ogs);
     }
 
     /**

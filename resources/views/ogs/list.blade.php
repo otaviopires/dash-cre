@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1 align="center">Falhas em Andamento</h1>
+	<h1 align="center">Histórico de OGs</h1>
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr style="background-color:lightgreen;" align="center">
@@ -19,34 +19,26 @@
 	@foreach ($ogs as $i=>$og)
 		<tbody>
 	        <tr data-toggle="collapse" data-target="#demo{{$i}}" class="accordion-toggle" style="background-color:lightyellow; text-align:center">
-			  <th scope="row">{{ $og['PROTOCOLO'] }}</th>
-			  <td>{{ $og['FILA'] }}</td>
-			  <td>{{ $og['STATUS'] }}</td>
-			  <td>{{ $og['DT_ABERTURA'] }}</td>
-			  <td>{{ $og['SERVICO'] }}</td>
-			  <td>{{ $og['REGIONAL'] }}</td>
-			  <td>{{ $og['LOCALIDADE'] }}</td>
-			  
-			  @if($og['INTERROMPEU']=='Y')
-				<td>Sim</td>
-			  @elseif($og['INTERROMPEU']=='N')
-				<td>Não</td>
-			  @else
-				<td>Não informado</td>
-			  @endif
-			  
-			  <td>{{ $og['QNT_CLIENTE'] }}</td>		
+			  <th scope="row">{{ $og['protocolo'] }}</th>
+			  <td>{{ $og['fila'] }}</td>
+			  <td>{{ $og['status'] }}</td>
+			  <td>{{ $og['data_abertura'] }}</td>
+			  <td>{{ $og['servico'] }}</td>
+			  <td>{{ $og['regional'] }}</td>
+			  <td>{{ $og['localidade'] }}</td>
+			  <td>{{ $og['interrompeu'] }}</td>
+			  <td>{{ $og['qtd_clientes'] }}</td>		
 			</tr> 
 			<tr>
 				<td class="hiddenRow" colspan="9"  style="background-color:lightblue">
 					<div id="demo{{$i}}" class="accordian-body collapse"> 
 						<p>
 							<strong>Descrição:</strong>
-							{{$og['DESCRICAO']}}			
+							{{$og['descricao']}}			
 						</p>						
 						<p>
 							<!-- {{$og['OBS']}} -->
-							{!! nl2br(e($og['OBS'])) !!}
+							{!! nl2br(e($og['obs'])) !!}
 						</p>
 					</div> 
 				</td>
@@ -54,4 +46,5 @@
 		</tbody>
 	@endforeach
 	</table>
+    {{$ogs->links()}}	
 @endsection

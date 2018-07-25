@@ -14,11 +14,16 @@
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/users/list', 'UsersController@index');
+Route::get('/ogs/list', 'OgsController@getSavedOgs');
+Route::get('/massiva', 'MassivasController@tela');
 
-Route::resource('posts', 'PostsController');
+Route::resources([
+    'ogs' => 'OgsController',
+    'posts' => 'PostsController'
+]);
 
-Route::resource('ogs', 'OgsController');
+
 
 Auth::routes();
 

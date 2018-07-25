@@ -32,7 +32,7 @@ class PostsController extends Controller
         //$posts =  Post::all();
         //$posts =  Post::orderBy('title', 'desc')->get();
 
-        $posts =  Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts =  Post::orderBy('created_at', 'desc')->paginate(2);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -154,7 +154,7 @@ class PostsController extends Controller
 
 		$post->save();
 		
-		return redirect('/dashboard')->with('success', 'Postagem atualizada!');
+		return redirect('/posts/list')->with('success', 'Postagem atualizada!');
     }
 
     /**
@@ -168,7 +168,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 		
 		if(auth()->user()->id != $post->user_id){
-			return redirect('/dashboard')->with('error', 'Página não autorizada');
+			return redirect('/posts/list')->with('error', 'Página não autorizada');
 		}
 		
 		if($post->cover_image != 'noimage.jpg'){
@@ -177,7 +177,7 @@ class PostsController extends Controller
 		}
 		
 		$post->delete();
-		return redirect('/dashboard')->with('success', 'Postagem excluída!');
+		return redirect('/posts/list')->with('success', 'Postagem excluída!');
 
 		
     }
