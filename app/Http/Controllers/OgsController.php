@@ -20,13 +20,8 @@ class OgsController extends Controller
      */
     public function index()
     {
-		$url = 'http://portaldesempenhohml.algartelecom.com.br/api/cor/pedro.php?usuario=pedrohas&senha=XpJkzk9qc';
-		$ogs = json_decode(file_get_contents($url), true);
-		//dd($ogs);
-		
-		$this->store($ogs);
+		$ogs = $this->getOgsFromUrl();		
 		return $this->showLiveJson($ogs);
-
     }
 
     /**
@@ -45,34 +40,35 @@ class OgsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($ogs)
-    {		
-		foreach($ogs as $o) {		
-			$protocolo = $o['PROTOCOLO'];
-			if(Og::where('protocolo',  $protocolo)->first()['protocolo'] == $o['PROTOCOLO']){
+    public function store()
+    {	
+		$ogs = $this->getOgsFromUrl();
+		foreach($ogs as $og) {		
+			if(Og::where('protocolo',  $og['PROTOCOLO'])->first()['protocolo'] == $og['PROTOCOLO']){
+				Og::where('protocolo',  $og['PROTOCOLO'])->update(['obs' => $og['OBS']]);
 				continue;
 			}else{
-				$og = new Og;
-				$og->protocolo = $o['PROTOCOLO'];
-				$og->fila = $o['FILA'];
-				$og->status = $o['STATUS'];
-				$og->data_abertura = $o['DT_ABERTURA'];
-				$og->servico = $o['SERVICO'];
-				$og->regional = $o['REGIONAL'];
-				$og->localidade = $o['LOCALIDADE'];
-				$og->descricao = $o['DESCRICAO'];
+				$ogToSave = new Og;
+				$ogToSave->protocolo = $og['PROTOCOLO'];
+				$ogToSave->fila = $og['FILA'];
+				$ogToSave->status = $og['STATUS'];
+				$ogToSave->data_abertura = $og['DT_ABERTURA'];
+				$ogToSave->servico = $og['SERVICO'];
+				$ogToSave->regional = $og['REGIONAL'];
+				$ogToSave->localidade = $og['LOCALIDADE'];
+				$ogToSave->descricao = $og['DESCRICAO'];
 				
-				if($o['INTERROMPEU'] == "Y"){
-					$og->interrompeu = "Sim";
-				}elseif($o['INTERROMPEU'] == "N"){
-					$og->interrompeu = "Não";
+				if($og['INTERROMPEU'] == "Y"){
+					$ogToSave->interrompeu = "Sim";
+				}elseif($og['INTERROMPEU'] == "N"){
+					$ogToSave->interrompeu = "Não";
 				}else{
-				$og->interrompeu = "Não informado";
+				$ogToSave->interrompeu = "Não informado";
 				}
 				
-				$og->qtd_clientes = $o['QNT_CLIENTE'];
-				$og->obs = $o['OBS'];
-				$og->save();
+				$ogToSave->qtd_clientes = $og['QNT_CLIENTE'];
+				$ogToSave->obs = $og['OBS'];
+				$ogToSave->save();
 			}
 		}
 	}
@@ -89,16 +85,6 @@ class OgsController extends Controller
 		//
 	}    
 	
-	public function getSavedOgs()
-    {
-        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(5);
-        return view('ogs.list')->with('ogs', $ogs);
-	}
-    
-    public function showLiveJson($ogs)
-    {
-		return view('ogs.index')->with('ogs', $ogs);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -132,5 +118,25 @@ class OgsController extends Controller
     public function destroy(Og $og)
     {
         //
+    }
+
+	public function showSavedOgs()
+    {
+        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(5);
+        return view('ogs.list')->with('ogs', $ogs);
+	}
+    
+    public function showLiveJson($ogs)
+    {
+		$ogs = collect($ogs)->sortBy('DT_ABERTURA')->reverse()->toArray();
+		return view('ogs.index')->with('ogs', $ogs);
+    }
+	
+	public function getOgsFromUrl()
+    {
+        $url = 'http://portaldesempenhohml.algartelecom.com.br/api/cor/pedro.php?usuario=pedrohas&senha=XpJkzk9qc';
+		$ogs = json_decode(file_get_contents($url), true);
+		return $ogs;
+		//dd($ogs);
     }
 }

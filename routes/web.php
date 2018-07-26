@@ -15,7 +15,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 Route::get('/users/list', 'UsersController@index');
-Route::get('/ogs/list', 'OgsController@getSavedOgs');
+Route::get('/ogs/list', 'OgsController@showSavedOgs');
 Route::get('/massiva', 'MassivasController@tela');
 
 Route::resources([

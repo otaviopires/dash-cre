@@ -9,11 +9,11 @@
 				<th scope="col" style="vertical-align:middle">Fila</th>
 				<th scope="col" style="vertical-align:middle">Status</th>
 				<th scope="col" style="vertical-align:middle">Data de abertura</th>
-				<th scope="col" style="vertical-align:middle">Serviço</th>			  
+				<!-- <th scope="col" style="vertical-align:middle">Serviço</th>			   -->
 				<th scope="col" style="vertical-align:middle">Regional</th>
 				<th scope="col" style="vertical-align:middle">Localidade</th>
 				<th scope="col" style="vertical-align:middle">Interrompeu?</th>
-				<th scope="col" style="vertical-align:middle">Quantidade de clientes</th>
+				<!-- <th scope="col" style="vertical-align:middle">Quantidade de clientes</th> -->
 			</tr>
 		</thead>
 	@foreach ($ogs as $i=>$og)
@@ -23,7 +23,7 @@
 			  <td>{{ $og['FILA'] }}</td>
 			  <td>{{ $og['STATUS'] }}</td>
 			  <td>{{ $og['DT_ABERTURA'] }}</td>
-			  <td>{{ $og['SERVICO'] }}</td>
+			  <!-- <td>{{ $og['SERVICO'] }}</td> -->
 			  <td>{{ $og['REGIONAL'] }}</td>
 			  <td>{{ $og['LOCALIDADE'] }}</td>
 			  
@@ -35,10 +35,10 @@
 				<td>Não informado</td>
 			  @endif
 			  
-			  <td>{{ $og['QNT_CLIENTE'] }}</td>		
+			  <!-- <td>{{ $og['QNT_CLIENTE'] }}</td>		 -->
 			</tr> 
 			<tr>
-				<td class="hiddenRow" colspan="9"  style="background-color:lightblue">
+				<td class="hiddenRow" colspan="7"  style="background-color:lightblue">
 					<div id="demo{{$i}}" class="accordian-body collapse"> 
 						<p>
 							<strong>Descrição:</strong>
