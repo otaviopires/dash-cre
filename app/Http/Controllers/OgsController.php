@@ -19,9 +19,10 @@ class OgsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-		$ogs = $this->getOgsFromUrl();		
-		return $this->showLiveJson($ogs);
+    {	
+		$this->store();
+		return $this->showLiveJson();
+		//return $this->closeSavedOg();
     }
 
     /**
@@ -46,6 +47,7 @@ class OgsController extends Controller
 		foreach($ogs as $og) {		
 			if(Og::where('protocolo',  $og['PROTOCOLO'])->first()['protocolo'] == $og['PROTOCOLO']){
 				Og::where('protocolo',  $og['PROTOCOLO'])->update(['obs' => $og['OBS']]);
+				error_log("[UPDATE] - Observações do protocolo " . Og::where('protocolo',  $og['PROTOCOLO'])->first()['protocolo'] . " atualizadas.");
 				continue;
 			}else{
 				$ogToSave = new Og;
@@ -69,8 +71,10 @@ class OgsController extends Controller
 				$ogToSave->qtd_clientes = $og['QNT_CLIENTE'];
 				$ogToSave->obs = $og['OBS'];
 				$ogToSave->save();
+				error_log("[NEW] - Protocolo " . Og::where('protocolo',  $og['PROTOCOLO'])->first()['protocolo'] . " salvo com sucesso!");
 			}
 		}
+		$this->closeSavedOgs();
 	}
 	
 
@@ -122,12 +126,13 @@ class OgsController extends Controller
 
 	public function showSavedOgs()
     {
-        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(5);
+        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(10);
         return view('ogs.list')->with('ogs', $ogs);
 	}
     
-    public function showLiveJson($ogs)
+    public function showLiveJson()
     {
+		$ogs = $this->getOgsFromUrl();
 		$ogs = collect($ogs)->sortBy('DT_ABERTURA')->reverse()->toArray();
 		return view('ogs.index')->with('ogs', $ogs);
     }
@@ -139,4 +144,38 @@ class OgsController extends Controller
 		return $ogs;
 		//dd($ogs);
     }
+	
+	public function closeSavedOgs()
+	{
+		$liveOgs = $this->getOgsFromUrl();
+		$savedOgs = Og::pluck('protocolo')->toArray();
+		foreach($savedOgs as $saved){
+			if(array_search($saved, array_column($liveOgs, 'PROTOCOLO'))){
+				error_log("O chamado: " . Og::where('protocolo',  $saved)->first()['protocolo'] . " ainda não foi encerrado. " . "Status atual: " .Og::where('protocolo',  $saved)->first()['status']);
+				continue;
+			}elseif (Og::where('protocolo',  $saved)->first()['status'] == "FECHADO"){
+				error_log("Chamado " . Og::where('protocolo',  $saved)->first()['protocolo'] . " já está encerrado.");
+				continue;
+			}else{
+				error_log("Chamado " . Og::where('protocolo',  $saved)->first()['protocolo'] . " não foi localizado nas OGS ativas. Será encerrado.");
+				Og::where('protocolo',  $saved)->update(['status' => "FECHADO"]);
+				error_log("Novo status: " .Og::where('protocolo',  $saved)->first()['status']);
+			}		
+		}
+	}
+	public function findOg(Request $request){
+		
+		if (!$request) {
+			$foundOgs = Og::all();
+		} else {
+			$foundOgs = Og::where('protocolo', $request)
+				->orWhere('descricao', $request)
+				->orWhere('obs', $request)
+				->orWhere('regional', $request)
+				->orWhere('localidade', $request)
+				->get();
+		}
+
+		return view('/', compact('foundOgs'));
+	}
 }

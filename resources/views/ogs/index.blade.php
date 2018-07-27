@@ -2,6 +2,17 @@
 
 @section('content')
 	<h1 align="center">Falhas em Andamento</h1>
+	
+	{!! Form::open(['method'=>'GET','url'=>'/ogs','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+	<div class="input-group custom-search-form">
+		<input type="text" class="form-control" name="search" placeholder="Procurar...">
+        <span class="input-group-btn">
+			<button class="btn btn-default-sm" type="submit">
+				<a class="fa fa-search">Procurar</a>
+			</button>
+		</span>
+	</div>
+	
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr style="background-color:lightgreen;" align="center">
