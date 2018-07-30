@@ -3,16 +3,6 @@
 @section('content')
 	<h1 align="center">Falhas em Andamento</h1>
 	
-	{!! Form::open(['method'=>'GET','url'=>'/ogs','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-	<div class="input-group custom-search-form">
-		<input type="text" class="form-control" name="search" placeholder="Procurar...">
-        <span class="input-group-btn">
-			<button class="btn btn-default-sm" type="submit">
-				<a class="fa fa-search">Procurar</a>
-			</button>
-		</span>
-	</div>
-	
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr style="background-color:lightgreen;" align="center">
@@ -29,7 +19,7 @@
 		</thead>
 	@foreach ($ogs as $i=>$og)
 		<tbody>
-	        <tr data-toggle="collapse" data-target="#demo{{$i}}" class="accordion-toggle" style="background-color:lightyellow; text-align:center">
+	        <tr class="accordion-toggler" data-toggle="collapse" data-target="#demo{{$i}}" style="background-color:lightyellow; text-align:center">
 			  <th scope="row">{{ $og['PROTOCOLO'] }}</th>
 			  <td>{{ $og['FILA'] }}</td>
 			  <td>{{ $og['STATUS'] }}</td>
@@ -49,8 +39,8 @@
 			  <!-- <td>{{ $og['QNT_CLIENTE'] }}</td>		 -->
 			</tr> 
 			<tr>
-				<td class="hiddenRow" colspan="7"  style="background-color:lightblue">
-					<div id="demo{{$i}}" class="accordian-body collapse"> 
+				<td colspan="7" style="background-color:lightblue">
+					<div  id="demo{{$i}}" class="accordian-collapse collapse"> 
 						<p>
 							<strong>Descrição:</strong>
 							{{$og['DESCRICAO']}}			
