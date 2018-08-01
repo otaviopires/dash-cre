@@ -14,7 +14,7 @@
 							</div>
 						@endif
 						<h3>
-							<a href="/posts/create" class='btn btn-primary'>Criar postagem</a>
+							<a href="{{route('posts.create')}}" class='btn btn-primary'>Criar postagem</a>
 						</h3>
 						@if(count($posts) > 0)
 							<h3 class='card-text'>Suas postagens</h3>

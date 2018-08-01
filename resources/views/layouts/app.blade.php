@@ -39,7 +39,6 @@
 	@guest
 	<div id="right-panel" class="right-panel">
 		<div id="app">
-			@include('inc.navbar')		
 	        <div class="content mt-1">
 				<main role="main" class="container py-1">
 					@include('inc.messages')
@@ -60,7 +59,6 @@
 					@yield('content')
 				</main>
 			</div>	
-			<!-- @include('inc.footer') -->
 		</div>
 	</div>
 	@endguest

@@ -32,5 +32,5 @@ class PagesController extends Controller
 			'services' => ['Service Desk Corporativo', 'NOC', 'TIC', 'Premium'] 
 		);
 		return view('pages.services')->with($data);
-	}	
+	}
  }

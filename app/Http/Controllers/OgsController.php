@@ -152,10 +152,8 @@ class OgsController extends Controller
 		foreach($savedOgs as $saved){
 			if(array_search($saved, array_column($liveOgs, 'PROTOCOLO'))){
 				error_log("[ABERTO] O chamado: " . Og::where('protocolo',  $saved)->first()['protocolo'] . " ainda não foi encerrado. " . "Status atual: " .Og::where('protocolo',  $saved)->first()['status']);
-				continue;
 			}elseif (Og::where('protocolo',  $saved)->first()['status'] == "FECHADO"){
 				error_log("[VERIFICADO] Chamado " . Og::where('protocolo',  $saved)->first()['protocolo'] . " já está encerrado.");
-				continue;
 			}else{
 				error_log("[ENCERRADO] Chamado " . Og::where('protocolo',  $saved)->first()['protocolo'] . " não foi localizado nas OGS ativas. Será encerrado.");
 				Og::where('protocolo',  $saved)->update(['status' => "FECHADO"]);
@@ -163,19 +161,35 @@ class OgsController extends Controller
 			}		
 		}
 	}
-	public function findOg(Request $request){
-		
+	public function findOg(Request $request)
+	{
 		if (!$request) {
-			$foundOgs = Og::all();
+			$ogs = Og::all();
 		} else {
-			$foundOgs = Og::where('protocolo', $request)
+			$ogs = Og::where('protocolo', 'LIKE', $request)
 				->orWhere('descricao', $request)
 				->orWhere('obs', $request)
 				->orWhere('regional', $request)
 				->orWhere('localidade', $request)
-				->get();
+				->paginate(10);
 		}
-
-		return view('/', compact('foundOgs'));
+		
+		return view('ogs.list')->with('ogs', $ogs);
 	}
+	
+	public function search(Request $request)
+	{
+		$protocolo = $request->input('protocolo');
+
+		//now get all user and services in one go without looping using eager loading
+		//In your foreach() loop, if you have 1000 users you will make 1000 queries
+
+		$ogs = Og::with('protocolo', 
+			function($query) use ($protocolo) {
+				$query->where('protocolo', 'LIKE', '%' . $protocolo . '%');
+			})->paginate(10);
+
+		return view('ogs.list', compact('ogs'));
+	}
+	
 }

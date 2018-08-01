@@ -12,21 +12,35 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
 					<h3 class="menu-title">Dashboard Corporativo</h3><!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Fórum</a>
-						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a href="/posts">Home</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="/users/list">Suas postagens</a></li>
-						</ul>						
-						
-					</li>
+					
+					<!-- Item do side menu-->
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bars"></i>Massivas</a>
 						<ul class="sub-menu children active dropdown-menu">
 							<li><i class="fa fa-puzzle-piece"></i><a href="/ogs">Abertas</a></li>
-							<li><i class="fa fa-spinner"></i><a href="/ogs/list">Histórico</a></li>
+							<li><i class="fa fa-spinner"></i><a href="/ogsList">Histórico</a></li>
 						</ul>
 					</li>
+					<!-- /Item do side menu-->
+					
+					<li class="menu-item-has-children dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Links úteis</a>
+						<ul class="sub-menu children active dropdown-menu">
+							<li><i class="fa fa-puzzle-piece"></i><a href="/links">Link</a></li>
+							<li><i class="fa fa-id-badge"></i><a href="/">Cadastrar</a></li>
+						</ul>						
+						
+					</li>
+					
+					<li class="menu-item-has-children dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Fórum</a>
+						<ul class="sub-menu children active dropdown-menu">
+							<li><i class="fa fa-puzzle-piece"></i><a href="/posts">Home</a></li>
+							<li><i class="fa fa-id-badge"></i><a href="/users">Suas postagens</a></li>
+						</ul>						
+						
+					</li>
+					
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bars"></i>Sobre</a>
 						<ul class="sub-menu children active dropdown-menu">

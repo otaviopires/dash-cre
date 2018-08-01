@@ -3,7 +3,7 @@
 @section('content')
 	<h1 align="center">Histórico de OGs</h1>
 	
-	{!! Form::open(['method'=>'GET','url'=>'/ogs','role'=>'search'])  !!}
+	{!! Form::open(['method'=>'GET','url'=>'/find','role'=>'search'])  !!}
 	<div class="input-group custom-search-form">
 		<input type="text" class="form-control" name="search" placeholder="Procurar...">
         <span class="input-group-btn">
@@ -12,6 +12,11 @@
 			</button>
 		</span>
 	</div>
+	
+	<!-- <form action="/search" method="GET"> -->
+		<!-- <input type="text" name="category" required/> -->
+		<!-- <button type="submit">Submit</button> -->
+	<!-- </form> -->
 	
 	<table class="table table-hover table-bordered">
 		<thead>
