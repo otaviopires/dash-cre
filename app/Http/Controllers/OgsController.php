@@ -127,7 +127,12 @@ class OgsController extends Controller
 	public function showSavedOgs()
     {
         $ogs =  Og::orderBy('protocolo', 'desc')->paginate(10);
-        return view('ogs.list')->with('ogs', $ogs);
+		foreach($ogs as $i=>$og){
+			if($og['status'] == "ABERTO"){
+				$ogs->forget($i);
+			}
+		}
+		return view('ogs.list')->with('ogs', $ogs);
 	}
     
     public function showLiveJson()
