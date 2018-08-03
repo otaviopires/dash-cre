@@ -36,11 +36,18 @@ class UsefulLinksController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+			'name' => 'required',
+			'url' => 'required'
+            ]);
         $link = new UsefulLink;
-		$link->name = "SIEBEL";
-		$link->description = "Internet Link e VOIP corporativo";
-		$link->url = "http://siebel:7777/ecommunications_ptb/start.swe";
-		$link->save();
+        $link->name = $request->input('name');
+        $link->description = $request->input('description');
+        $link->url = $request->input('url');
+        $link->save();
+        
+        return redirect('links')->with('success', 'Novo link cadastrado!');
+
     }
 
     /**

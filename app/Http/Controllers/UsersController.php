@@ -24,8 +24,15 @@ class UsersController extends Controller
      */
     public function index()
     {
+        //
+    }
+
+    public function showPosts()
+    {
 		$user_id = auth()->user()->id;
 		$user = User::find($user_id);
-        return view('users.list_posts')->with('posts', $user->posts);
+        return view('users.posts')->with('posts', $user->posts);
     }
+
+
 }

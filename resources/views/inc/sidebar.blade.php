@@ -15,10 +15,10 @@
 					
 					<!-- Item do side menu-->
 					<li class="menu-item-has-children dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bars"></i>Massivas</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-exclamation-circle"></i>Massivas</a>
 						<ul class="sub-menu children active dropdown-menu">
 							<li><i class="fa fa-puzzle-piece"></i><a href="/ogs">Abertas</a></li>
-							<li><i class="fa fa-spinner"></i><a href="/ogsList">Histórico</a></li>
+							<li><i class="fa fa-list-alt"></i><a href="/ogs/saved">Histórico</a></li>
 						</ul>
 					</li>
 					<!-- /Item do side menu-->
@@ -27,7 +27,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Links úteis</a>
 						<ul class="sub-menu children active dropdown-menu">
 							<li><i class="fa fa-puzzle-piece"></i><a href="/links">Link</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="/">Cadastrar</a></li>
+							<li><i class="fa fa-id-badge"></i><a href="/links/create">Cadastrar</a></li>
 						</ul>						
 						
 					</li>
@@ -36,7 +36,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Fórum</a>
 						<ul class="sub-menu children active dropdown-menu">
 							<li><i class="fa fa-puzzle-piece"></i><a href="/posts">Home</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="/users">Suas postagens</a></li>
+							<li><i class="fa fa-id-badge"></i><a href="/user/posts">Suas postagens</a></li>
 						</ul>						
 						
 					</li>
