@@ -26,7 +26,7 @@
 						</div>
 					</a>
 				
-					<a href="{{$link->url}}">
+					<a href="{{$link->url}}" target="_blank">
 						<div class="col-md-1 col-sm-1">
 							<i class="fa fa-external-link pull-right"></i>
 						</div>

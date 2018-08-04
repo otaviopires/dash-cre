@@ -17,17 +17,17 @@
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-exclamation-circle"></i>Massivas</a>
 						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a href="/ogs">Abertas</a></li>
+							<li><i class="fa fa-exclamation"></i><a href="/ogs">Abertas</a></li>
 							<li><i class="fa fa-list-alt"></i><a href="/ogs/saved">Histórico</a></li>
 						</ul>
 					</li>
 					<!-- /Item do side menu-->
 					
 					<li class="menu-item-has-children dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Links úteis</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-external-link-square"></i>Links úteis</a>
 						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a href="/links">Link</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="/links/create">Cadastrar</a></li>
+							<li><i class="fa fa-external-link"></i><a href="/links">Links</a></li>
+							<li><i class="fa fa-plus"></i><a href="/links/create">Cadastrar</a></li>
 						</ul>						
 						
 					</li>
