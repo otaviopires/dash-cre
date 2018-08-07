@@ -17,9 +17,9 @@
 				<!-- <th scope="col" style="vertical-align:middle">Quantidade de clientes</th> -->
 			</tr>
 		</thead>
-	@foreach ($ogs as $i=>$og)
+	@foreach ($ogs as $og)
 		<tbody>
-	        <tr class="accordion-toggler" data-toggle="collapse" data-target="#demo{{$i}}" style="background-color:lightyellow; text-align:center">
+	        <tr class="accordion-toggler" data-toggle="collapse" data-target="#demo{{$og['PROTOCOLO']}}" style="background-color:lightyellow; text-align:center">
 			  <th scope="row">{{ $og['PROTOCOLO'] }}</th>
 			  <td>{{ $og['FILA'] }}</td>
 			  <td>{{ $og['STATUS'] }}</td>
@@ -39,8 +39,8 @@
 			  <!-- <td>{{ $og['QNT_CLIENTE'] }}</td>		 -->
 			</tr> 
 			<tr>
-				<td colspan="7" style="background-color:lightblue">
-					<div  id="demo{{$i}}" class="accordian-collapse collapse"> 
+				<td colspan="7" style="background-color:lightblue; color: #000000;">
+					<div  id="demo{{$og['PROTOCOLO']}}" class="accordian-collapse collapse">	
 						<p>
 							<strong>Descrição:</strong>
 							{{$og['DESCRICAO']}}			

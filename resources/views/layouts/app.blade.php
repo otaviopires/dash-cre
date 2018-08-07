@@ -15,6 +15,21 @@
 	<!-- Import URLs -->
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
+	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->
 
 	<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -39,12 +54,8 @@
 	@guest
 	<div id="right-panel" class="right-panel">
 		<div id="app">
-	        <div class="content mt-1">
-				<main role="main" class="container py-1">
-					@include('inc.messages')
 					@yield('content')
-				</main>
-			</div>	
+				
 			<!-- @include('inc.footer') -->
 		</div>
 	</div>
@@ -92,6 +103,12 @@
             } );
         } )( jQuery );
     </script>
+	
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
 
 </body>
 </html>
