@@ -19,12 +19,13 @@ Route::get('ogs/saved', 'OgsController@showSavedOgs');
 Route::get('massiva', 'MassivasController@tela');
 Route::get('search', 'OgsController@search');
 Route::get('find', 'OgsController@findOg');
-
+Route::get('pfs/saved', 'PfsController@showSavedPfs');
 
 Route::resources([
     'ogs' => 'OgsController',
     'posts' => 'PostsController',
-    'links' => 'UsefulLinksController'
+    'links' => 'UsefulLinksController',
+	'pfs' => 'PfsController'
 ]);
 
 
