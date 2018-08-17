@@ -32,9 +32,9 @@
 				<th scope="col" style="vertical-align:middle">Quantidade de clientes</th>
 			</tr>
 		</thead>
-	@foreach ($ogs as $i=>$og)
+	@foreach ($ogs as $og)
 		<tbody>
-	        <tr data-toggle="collapse" data-target="#demo{{$i}}" class="accordion-toggle" style="background-color:lightyellow; text-align:center">
+	        <tr data-toggle="collapse" data-target="#demo{{$og['protocolo']}}" class="accordion-toggle" style="background-color:lightyellow; text-align:center">
 			  <th scope="row">{{ $og['protocolo'] }}</th>
 			  <td>{{ $og['fila'] }}</td>
 			  <td>{{ $og['status'] }}</td>
@@ -46,16 +46,17 @@
 			  <td>{{ $og['qtd_clientes'] }}</td>		
 			</tr> 
 			<tr>
-				<td class="hiddenRow" colspan="9"  style="background-color:lightblue">
-					<div id="demo{{$i}}" class="accordian-body collapse"> 
-						<p>
-							<strong>Descrição:</strong>
-							{{$og['descricao']}}			
-						</p>						
-						<p>
-							<!-- {{$og['OBS']}} -->
-							{!! nl2br(e($og['obs'])) !!}
-						</p>
+				<td colspan="9" style="background-color:lightblue; color: #000000;">
+					<div  id="demo{{$og['protocolo']}}" class="accordian-collapse collapse mx-4">	
+						<ul>
+							<li>
+								<strong>Descrição:</strong>
+								{{$og['descricao']}}			
+							</li>
+							<li>
+								{!! nl2br(e($og['obs'])) !!}
+							</li>
+						</ul>
 					</div> 
 				</td>
 			</tr>

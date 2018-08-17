@@ -117,7 +117,7 @@ class PfsController extends Controller
 
 	public function showSavedPfs()
     {
-        $pfs =  Pf::orderBy('protocolo', 'desc')->paginate(10);
+        $pfs =  Pf::orderBy('protocolo', 'desc')->paginate(20);
 		foreach($pfs as $i=>$pf){
 			if($pf['status'] == "ABERTO"){
 				$pfs->forget($i);
@@ -136,10 +136,11 @@ class PfsController extends Controller
 	
 	public function getPfsFromUrl()
     {
-        $url = 'http://10.51.201.92/api/filas?email=rodrigosv@algartelecom.com.br&password=bXVkYXIxMjM=&id=7';
+        $url = 'http://10.51.201.92/api/filas?email=rodrigosv@algartelecom.com.br&password=bXVkYXIxMjM=&id=6';		
 		$pfs = json_decode(file_get_contents($url), true);
 		$pfs = $pfs['result'];
 		return $pfs;
+		
     }
 	
 	public function closeSavedPfs()

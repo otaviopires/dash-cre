@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call('App\Http\Controllers\OgsController@store')
 			->everyMinute();
+		$schedule->call('App\Http\Controllers\PfsController@store')
+			->everyMinute();
 			//->sendOutputTo('/logs');;
 		//$schedule->command('inspire')
         //        ->everyMinute();

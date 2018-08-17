@@ -40,15 +40,16 @@
 			</tr> 
 			<tr>
 				<td colspan="7" style="background-color:lightblue; color: #000000;">
-					<div  id="demo{{$og['PROTOCOLO']}}" class="accordian-collapse collapse">	
-						<p>
-							<strong>Descrição:</strong>
-							{{$og['DESCRICAO']}}			
-						</p>						
-						<p>
-							<!-- {{$og['OBS']}} -->
-							{!! nl2br(e($og['OBS'])) !!}
-						</p>
+					<div  id="demo{{$og['PROTOCOLO']}}" class="accordian-collapse collapse mx-4">	
+						<ul>
+							<li>
+								<strong>Descrição:</strong>
+								{{$og['DESCRICAO']}}			
+							</li>
+							<li>
+								{!! nl2br(e($og['OBS'])) !!}
+							</li>
+						</ul>
 					</div> 
 				</td>
 			</tr>

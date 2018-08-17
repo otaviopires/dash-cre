@@ -18,7 +18,7 @@ class PagesController extends Controller
 	public function index(){
 		$title = "Dashboard Corporativo";
 		//return view('pages.index')->with('title', $title);
-		return view('pages.index', compact('title'));
+		return view('auth.login', compact('title'));
 	}
 	
 	public function about(){

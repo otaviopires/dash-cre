@@ -27,7 +27,7 @@
 			</tr> 
 			<tr>
 				<td colspan="7" style="background-color:lightblue; color: #000000;">
-					<div  id="demo{{$pf['PROTOCOLO']}}" class="accordian-collapse collapse">	
+					<div  id="demo{{$pf['PROTOCOLO']}}" class="accordian-collapse collapse mx-4">	
 						<table class="table border-0" style="background-color:rgba(0, 0, 0, 0);">
 							<tr>
 								<td class="border-0" width="20%"><strong>Técnico:</strong></td>
@@ -44,10 +44,6 @@
 							<tr>
 								<td class="border-0" width="20%"><strong>Serviço:</strong></td>
 								<td class="border-0 pull-left" width="30%" style="text-align:right;">{{$pf['SERVICO']}} <br></td>
-							</tr>
-							<tr>
-								<td class="border-0" width="20%"><strong>Técnico:</strong></td>
-								<td class="border-0 pull-left" width="30%" style="text-align:right;">{{$pf['TECNICO']}} <br></td>
 							</tr>
 						</table>
 					</div> 
