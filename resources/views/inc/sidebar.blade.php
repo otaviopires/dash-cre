@@ -24,10 +24,10 @@
 
 					<!-- /Item do side menu-->
 					<li class="menu-item-has-children dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-external-link-square"></i>Pesquisas de Falha</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-eye"></i>Pesquisas de Falha</a>
 						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-external-link"></i><a href="/pfs">Abertas</a></li>
-							<li><i class="fa fa-plus"></i><a href="/pfs/saved">Histórico</a></li>
+							<li><i class="fa fa-eye"></i><a href="/pfs">Abertas</a></li>
+							<li><i class="fa fa-eye-slash"></i><a href="/pfs/saved">Histórico</a></li>
 						</ul>						
 					</li>
 					
@@ -38,14 +38,28 @@
 							<li><i class="fa fa-plus"></i><a href="/links/create">Cadastrar</a></li>
 						</ul>						
 						
-					</li>
-					
+					</li>	
+                    
+                    <li class="menu-item-has-children dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-square"></i>FCR</a>
+					</li>      
+
+                    <li class="menu-item-has-children dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-square"></i>Escala dos plantonistas</a>
+					</li>   
+
+                    <li class="menu-item-has-children dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-square"></i>Mapas de calor</a>
+					</li>   
+                                     
+
+                                     
 					
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Fórum</a>
 						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a href="/posts">Home</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="/user/posts">Suas postagens</a></li>
+							<li><i class="fa fa-square"></i><a href="/posts">Home</a></li>
+							<li><i class="fa fa-square"></i><a href="/user/posts">Suas postagens</a></li>
 						</ul>						
 						
 					</li>
@@ -53,8 +67,8 @@
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bars"></i>Sobre</a>
 						<ul class="sub-menu children active dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a href="/about">Quem somos</a></li>
-							<li><i class="fa fa-spinner"></i><a href="/services">Setores</a></li>
+							<li><i class="fa fa-square"></i><a href="/about">Quem somos</a></li>
+							<li><i class="fa fa-square"></i><a href="/services">Setores</a></li>
 						</ul>
 					</li>
                 </ul>
