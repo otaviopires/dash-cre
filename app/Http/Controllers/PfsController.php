@@ -21,7 +21,7 @@ class PfsController extends Controller
     public function index()
     {	
 		//$this->store();
-		return $this->showLiveJson();
+		return $this->showOpenPfs();
 		//return $this->closeSavedOg();
     }
 
@@ -114,6 +114,17 @@ class PfsController extends Controller
     {
         // we don't plan do delete save Pfs, they're meant to be a log
     }
+	
+	public function showOpenPfs()
+    {
+        $pfs =  Pf::orderBy('protocolo', 'desc');
+		foreach($pfs as $i=>$pf){
+			if($pf['status'] == "FECHADO"){
+				$pfs->forget($i);
+			}
+		}
+		return view('pfs.open')->with('pfs', $pfs);
+	}
 
 	public function showSavedPfs()
     {

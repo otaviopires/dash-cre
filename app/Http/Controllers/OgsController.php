@@ -21,7 +21,7 @@ class OgsController extends Controller
     public function index()
     {	
 		//$this->store();
-		return $this->showLiveJson();
+		return $this->showOpenOgs();
 		//return $this->closeSavedOg();
     }
 
@@ -74,7 +74,7 @@ class OgsController extends Controller
 				error_log("[NEW] - Protocolo " . Og::where('protocolo',  $og['PROTOCOLO'])->first()['protocolo'] . " salvo com sucesso!");
 			}
 		}
-		$this->closeSavedOgs();
+		$this->closeClosedOgs();
 	}
 	
 
@@ -124,15 +124,26 @@ class OgsController extends Controller
         //
     }
 
-	public function showSavedOgs()
+	public function showClosedOgs()
     {
-        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(10);
+        $ogs =  Og::orderBy('protocolo', 'desc')->paginate(15);
 		foreach($ogs as $i=>$og){
 			if($og['status'] == "ABERTO"){
 				$ogs->forget($i);
 			}
 		}
-		return view('ogs.list')->with('ogs', $ogs);
+		return view('ogs.closed')->with('ogs', $ogs);
+	}
+
+	public function showOpenOgs()
+    {
+        $ogs =  Og::orderBy('protocolo', 'desc');
+		foreach($ogs as $i=>$og){
+			if($og['status'] == "FECHADO"){
+				$ogs->forget($i);
+			}
+		}
+		return view('ogs.open')->with('ogs', $ogs);
 	}
     
     public function showLiveJson()

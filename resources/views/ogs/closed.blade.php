@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1 align="center">Histórico de OGs</h1>
+	<h1 align="center">Histórico de OGs Encerradas</h1>
 	
 	{!! Form::open(['method'=>'GET','url'=>'/find','role'=>'search'])  !!}
 	<div class="input-group custom-search-form">

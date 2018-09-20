@@ -18,7 +18,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-exclamation-circle"></i>Massivas</a>
 						<ul class="sub-menu children active dropdown-menu">
 							<li><i class="fa fa-exclamation"></i><a href="/ogs">Abertas</a></li>
-							<li><i class="fa fa-list-alt"></i><a href="/ogs/saved">Histórico</a></li>
+							<li><i class="fa fa-list-alt"></i><a href="/ogs/closed">Histórico</a></li>
 						</ul>
 					</li>
 
