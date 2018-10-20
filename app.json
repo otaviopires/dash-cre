@@ -1,0 +1,17 @@
+{
+  "name": "dash-cre",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "laravel"
+    }
+  ]
+}
