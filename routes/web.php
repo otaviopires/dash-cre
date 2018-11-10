@@ -28,7 +28,5 @@ Route::resources([
 	'pfs' => 'PfsController'
 ]);
 
-
-
 Auth::routes();
 
